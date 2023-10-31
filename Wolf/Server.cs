@@ -45,7 +45,7 @@ public class Server
 
 		//configure integrated server
 		builder.WebHost.ConfigureKestrel(opts => {
-			opts.Listen(IPAddress.Loopback, 5000);
+			opts.Listen(IPAddress.Loopback, 5030);
 		});
 
 

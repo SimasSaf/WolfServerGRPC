@@ -37,7 +37,7 @@ class Client
             try
             {
 				//connect to the server, get service proxy
-				var channel = GrpcChannel.ForAddress("http://127.0.0.1:5000");
+				var channel = GrpcChannel.ForAddress("http://127.0.0.1:5030");
 				var wolf = new Wolf.WolfClient(channel);
 
                 InitializeWater(wolf);
