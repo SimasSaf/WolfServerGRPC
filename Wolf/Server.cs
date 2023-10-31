@@ -29,6 +29,7 @@ public class Server
         self.Run(args);
     }
 
+	
     private void Run(string[] args)
     {
         ConfigureLogging();

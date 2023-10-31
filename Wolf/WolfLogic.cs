@@ -19,8 +19,9 @@ public class WolfState
 //Where all the logic happens (initializes variables, starts background task, defines logic methods)
 class WolfLogic
 {
+    //If wold is max weight, it cant eat or drink
     static readonly int WOLF_MAX_WEIGHT = 30;
-
+    //Eats rabbit if less than distance
     static readonly int EAT_IF_LESS_DISTANCE = 30;
     static bool WOLF_IS_FULL = false;
     private Thread backgroundTaskThread;
@@ -52,7 +53,7 @@ class WolfLogic
         }
     }
 
-    //Adds water near wolf
+    //Adds water near wolf, adding unique id
     public int SpawnWaterNearWolf(WaterDesc water)
     {
         mLog.Info("~~~ Spawning Water near Wolf ~~~");
@@ -91,6 +92,7 @@ class WolfLogic
         }
     }
 
+    //Check if water is spawned in with id
     public bool IsWaterAlive(WaterDesc water)
     {
         lock(wolfState.AccessLock)
@@ -99,6 +101,7 @@ class WolfLogic
         }
     }
 
+    // Constantly runs logic in the background
     private void BackgroundTask()
     {
         while(true)
@@ -134,6 +137,7 @@ class WolfLogic
         }
     }
 
+    //Check if rabbits nearby
     private void CheckRabbitsNearby()
     {
         List<RabbitDesc> newRabbitsNearby = wolfState.RabbitsNearby;
@@ -161,6 +165,7 @@ class WolfLogic
         }
     }
 
+    //Checks if water is nearby and also checks if wolf is full so he can drink
         private void CheckWaterNearby()
     {
         List<WaterDesc> newWaterNearby = wolfState.WaterNearby;
@@ -186,6 +191,7 @@ class WolfLogic
         }
     }
 
+    //Adds rabbit weight to wolf weight and removes rabbit from close proximity
     private void EatRabbit(RabbitDesc rabbit)
     {
         mLog.Info($"Eating {rabbit.RabbitName} The Rabbit");
@@ -193,6 +199,7 @@ class WolfLogic
         wolfState.RabbitsNearby.Remove(rabbit);
     }
 
+    //Adds water volume to wolf weight and removes water from proximity
     private void DrinkWater(WaterDesc water)
     {
         mLog.Info("Drinking water...");
@@ -200,6 +207,7 @@ class WolfLogic
         wolfState.WaterNearby.Remove(water);
     }
 
+    //Generates random location for wolf
     private void GenerateRandomWolfCoordinates()
     {
         wolfState.X = rng.Next(-50, 50);

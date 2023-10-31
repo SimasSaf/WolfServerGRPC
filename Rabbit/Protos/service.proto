@@ -6,10 +6,19 @@ package Services;
 
 //this will translate into service and service client stubs
 service Wolf {
+    //Send rabbit obj to server
 	rpc EnterWolfArea(RabbitDesc) returns (IntMsg);
+
+    //Send water obj to server
 	rpc SpawnWaterNearWolf(WaterDesc) returns (IntMsg);
+
+    //Updates rabbit.distanceToWolf var in rabbit
 	rpc UpdateRabbitDistanceToWolf(RabbitDesc) returns (Empty);
+
+    //Check if rabbit obj still exists in the server
 	rpc IsRabbitAlive(RabbitDesc) returns (BoolMsg);
+
+    //Check if water obj still exists in the server
 	rpc IsWaterAlive(WaterDesc) returns (BoolMsg);
 }
 

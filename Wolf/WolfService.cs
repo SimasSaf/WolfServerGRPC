@@ -9,6 +9,7 @@ public class WolfService : Services.Wolf.WolfBase
     //singleton call to wolfLogic
     private readonly WolfLogic wolfLogic = new WolfLogic();
 
+    //send rabbit obj to server
     public override Task<IntMsg> EnterWolfArea(Services.RabbitDesc input, ServerCallContext context )
     {
         var rabbit =
@@ -27,6 +28,7 @@ public class WolfService : Services.Wolf.WolfBase
         return Task.FromResult(result);
     }
 
+    //Send water obj to server
     public override Task<IntMsg> SpawnWaterNearWolf(WaterDesc input, ServerCallContext context)
     {
         var water =
@@ -44,6 +46,7 @@ public class WolfService : Services.Wolf.WolfBase
         return Task.FromResult(result);
     }
 
+    //updates rabbit.distanceToWolf var in rabbit
     public override Task<Empty> UpdateRabbitDistanceToWolf(RabbitDesc input, ServerCallContext context)
     {
         var result = new Empty {};
@@ -51,6 +54,7 @@ public class WolfService : Services.Wolf.WolfBase
         return Task.FromResult(result);
     }
 
+    //check if rabbit obj still exists in the server
     public override Task<BoolMsg> IsRabbitAlive(RabbitDesc input, ServerCallContext context)
     {
          var rabbit =
@@ -69,6 +73,7 @@ public class WolfService : Services.Wolf.WolfBase
         return Task.FromResult(result);
     }
 
+    //check if water obj still exists in the server
     public override Task<BoolMsg> IsWaterAlive(WaterDesc input, ServerCallContext context)
     {
         var water =

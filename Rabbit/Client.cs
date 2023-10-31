@@ -49,6 +49,8 @@ class Client
 
             while(true)
             {
+                //If rabbit is nearby, make a random distande, update at wolf end
+                //otherwise rabbit is dead, restart
                 while(wolf.IsRabbitAlive(rabbit).Value)
                 {
                     rabbit.DistanceToWolf = rng.Next(1, 100);
@@ -82,6 +84,7 @@ class Client
 		self.Run();
 	}
 
+    //Set preliminary values of rabbit, send rabbit to wolf server
     private void InitializeRabbit(Wolf.WolfClient wolf)
     {
         var personGenerator = new PersonNameGenerator();
